@@ -1,0 +1,23 @@
+h2.white-text= @blog.title
+
+.card-panel
+  .card-content
+    .row
+      .col.s10
+        em.grey-text.text-lighten-1<
+          | Posted by
+          strong<>= @blog.user.name
+          | on
+          strong<>= @blog.created_at.stamp('Jan 1, 2000 @ 1:00pm')
+      - if current_user
+        .col.s1
+          = link_to edit_blog_path(@blog), class: 'btn-floating waves-effect waves-light orange accent-2 right' do
+            i.material-icons mode_edit
+        .col.s1
+          = link_to @blog, method: :delete, data: { confirm: 'Are you sure you want to delete this amazeballs blog?' }, class: 'btn-floating waves-effect waves-light red lighten-2 right' do
+            i.material-icons delete
+    .row
+      .col.s12
+        = simple_format @blog.body, class: 'flow-text'
+
+= link_to 'Back', blogs_path, class: 'btn waves-effect waves-light'

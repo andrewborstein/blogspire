@@ -1,0 +1,24 @@
+.row
+  .col.s10
+    h2.white-text Blogs
+  .col.s2
+    h2.right-align
+      = link_to new_blog_path, class: 'btn-floating btn-large waves-effect waves-light orange accent-2' do
+        i.material-icons add
+
+- @blogs.each do |blog|
+  .card
+    .card-content
+      .row
+        .col.s12
+          = link_to blog.title, blog, class: 'card-title'
+          em.grey-text.text-lighten-1= blog.created_at.stamp('Jan 1, 2000 @ 1:00pm')
+      .row
+        .col.s12
+          = truncate(blog.body, length: 350, separator: ' ', omission: '... ')
+          - if blog.body.length > 350
+            = link_to 'read more', blog
+    .card-action
+      .chip= blog.user.name
+
+

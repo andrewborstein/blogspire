@@ -1,0 +1,19 @@
+.card-panel
+  = form_for(@blog) do |f|
+    - if @blog.errors.any?
+      #error_explanation
+        h2
+          = pluralize(@blog.errors.count, "error")
+          | prohibited this blog from being saved:
+        ul
+          - @blog.errors.full_messages.each do |message|
+            li= message
+    .row
+      .input-field.col.s12
+        = f.text_field :title
+        = f.label :title
+      .input-field.col.s12
+        = f.label :body
+        = f.text_area :body, class: 'materialize-textarea'
+      .actions
+        = f.submit nil, class: 'btn-large waves-effect waves-light orange accent-2'
