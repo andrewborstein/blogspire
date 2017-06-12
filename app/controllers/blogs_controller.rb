@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :destroy, :edit, :new, :update]
 
   # GET /blogs
   # GET /blogs.json
@@ -12,6 +12,8 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     @blogger_logged_in = current_user == @blog.user
+    @comment = Comment.new(blog_id: @blog.id)
+    @blog_comments = @blog.comments.order(created_at: :asc)
   end
 
   # GET /blogs/new

@@ -20,4 +20,35 @@ h2.white-text= @blog.title
       .col.s12
         = simple_format @blog.body, class: 'flow-text'
 
+  hr
+
+  = form_for(@comment) do |f|
+    - if @comment.errors.any?
+      #error_explanation
+        h2
+          = pluralize(@comment.errors.count, "error")
+          | prohibited this blog from being saved:
+        ul
+          - @comment.errors.full_messages.each do |message|
+            li= message
+    .row
+      .input-field.col.s12
+        = f.label 'Comment'
+        = f.text_area :body, class: 'materialize-textarea'
+
+        = f.hidden_field :blog_id
+
+      .actions
+        = f.submit nil, class: 'btn-large waves-effect waves-light orange accent-2'
+
+  hr
+
+  ul
+    - @blog_comments.each do |comment|
+      li
+        strong>= comment.try(:user).try(:name)
+        | says
+        strong<= comment.body
+
+
 = link_to 'Back', blogs_path, class: 'btn waves-effect waves-light'

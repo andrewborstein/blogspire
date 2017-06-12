@@ -27,6 +27,9 @@ class BlogsControllerTest < ActionController::TestCase
   test "should show blog" do
     get :show, id: @blog
     assert_response :success
+
+    # if auth, assert form there
+    # else, no form
   end
 
   test "should get edit" do

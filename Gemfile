@@ -47,6 +47,9 @@ gem 'slim'
 # Time stamp formatting
 gem 'stamp'
 
+# Test runner
+gem 'm'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
