@@ -6,10 +6,10 @@ h2.white-text= @blog.title
       .col.s10
         em.grey-text.text-lighten-1<
           | Posted by
-          strong<>= @blog.user.name
+          strong<>= @blogger_logged_in ? 'You' : @blog.user.name
           | on
           strong<>= @blog.created_at.stamp('Jan 1, 2000 @ 1:00pm')
-      - if current_user
+      - if @blogger_logged_in
         .col.s1
           = link_to edit_blog_path(@blog), class: 'btn-floating waves-effect waves-light orange accent-2 right' do
             i.material-icons mode_edit
