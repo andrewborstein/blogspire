@@ -27,8 +27,9 @@ html {
 }
 
 p {
-  font-family: 'PT Serif', serif;
   color: #444;
+  font-family: 'PT Serif', serif;
+  line-height: 1.6;
 }
 
 .row {
