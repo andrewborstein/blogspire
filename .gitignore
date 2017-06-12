@@ -1,0 +1,43 @@
+# public/javascripts/cache/*/*.js
+*.log
+*.orig
+*.swo
+*.swp
+*~
+tags
+._*
+.bundle
+.byebug_history
+.DS_Store
+.env
+.sass-cache
+# the .idea directory is used by jetbrains IDEs
+.idea
+bash-wakatime/*
+cbttunnel.jar
+coverage/*
+dump.rdb
+jsappn
+log/*.log
+public/source
+public/source/*
+public/source/**/*
+scratch*
+tmp/*
+config/aws.yml
+*.tmproj
+public/admin
+public/system
+public/system/*
+public/assets/*
+public/paperclip/*
+public/uploads/*
+data/
+test/fixtures/act_exporter_output.csv
+test/reports
+# to handle the rvm directory
+.ruby-gemset
+.vagrant
+cookbooks
+.wakatime-project
+.tags
