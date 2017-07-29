@@ -5,6 +5,8 @@ nav.light-blue.darken-4
       a.hide-on-large-and-up.button-collapse data-activates="slide-out" href="#"
         i.material-icons menu
       ul#nav-mobile.right.hide-on-med-and-down
+        li= link_to new_blog_path, class: 'btn-floating btn waves-effect waves-light orange accent-2' do
+          i.material-icons add
         li= link_to 'Blogs', root_path
         - if current_user
           li= link_to 'Profile', edit_user_path(current_user)
