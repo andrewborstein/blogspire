@@ -18,7 +18,7 @@
       .chip
         = image_tag @blog.user.image.url if @blog.user.image.present?
         = @blog.user.name if @blog.user.name.present?
-    em.grey-text.text-lighten-1= "#{time_ago_in_words(@blog.created_at)} ago"
+    em.time-ago.grey-text.text-lighten-1= "#{time_ago_in_words(@blog.created_at)} ago"
 
   - if @blog_comments.present?
     .grey.lighten-5

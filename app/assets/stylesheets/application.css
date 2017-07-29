@@ -84,3 +84,11 @@ nav ul a,
   text-transform: none;
   color: #333;
 }
+.card .card-content p + p {
+  margin-top: 1em
+}
+@media (max-width: 600px) {
+  .time-ago {
+    display: block
+  }
+}
