@@ -11,10 +11,10 @@
             = link_to 'read more', blog
       .card-action
         - if blog.user.image.present? || blog.user.name.present?
-          .chip
+          = link_to user_blogs_path(blog.user), class: 'chip' do
             = image_tag blog.user.image.url if blog.user.image.present?
             = blog.user.name if blog.user.name.present?
-        em.grey-text.text-lighten-1= blog.created_at.stamp('Jan 1, 2000 @ 1:00pm')
+        em.grey-text.text-lighten-1= "#{time_ago_in_words(blog.created_at)} ago"
 
 - else
   h5.white-text No blogs yet, WOMP

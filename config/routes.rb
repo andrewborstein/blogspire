@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :comments
   devise_for :users
-  resources :users
+  resources :users do
+    resources :blogs, only: :index, controller: 'users/blogs'
+  end
   resources :blogs
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

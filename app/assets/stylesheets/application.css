@@ -76,3 +76,11 @@ nav ul a,
 .collection.with-header .collection-header {
   background-color: transparent;
 }
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating).chip {
+  text-transform: none;
+  color: #666;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating).chip:hover {
+  text-transform: none;
+  color: #333;
+}
