@@ -13,10 +13,24 @@
         = f.text_field :name
         = f.label :name
       .input-field.file-field.col.s12
-        .btn
-          span Image
-          = f.file_field :image
-        .file-path-wrapper
-          input.file-path.validate type='text'
+        - if @user.image.present?
+          .col.m3
+            = image_tag @user.image.url, class: 'responsive-img'
+          .col.m9
+            .btn.btn-flat
+              span Choose Image
+              = f.file_field :image
+            .file-path-wrapper
+              input.file-path.validate type='text'
+        - else
+          .col.m12
+            .btn.btn-flat
+              span Choose Image
+              = f.file_field :image
+            .file-path-wrapper
+              input.file-path.validate type='text'
+
       .actions
-        = f.submit nil, class: 'btn waves-effect waves-light orange accent-2'
+        = f.submit 'Submit', class: 'btn waves-effect waves-light orange accent-2 right'
+        = link_to 'Delete Account', @user, method: :delete, data: { confirm: 'Are you sure you want to delete your user account?' },
+          class: 'btn waves-effect waves-light right btn-flat'

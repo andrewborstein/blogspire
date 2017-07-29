@@ -14,14 +14,22 @@
         = f.label :title
       .input-field.file-field.col.s12
         .row
-          .col.m3
-            = image_tag @blog.image.url, class: 'responsive-img'
-          .col.m9
-            .btn.btn-flat
-              span Choose Image
-              = f.file_field :image
-            .file-path-wrapper
-              input.file-path.validate type='text'
+          - if @blog.image.present?
+            .col.m3
+              = image_tag @blog.image.url, class: 'responsive-img'
+            .col.m9
+              .btn.btn-flat
+                span Choose Image
+                = f.file_field :image
+              .file-path-wrapper
+                input.file-path.validate type='text'
+          - else
+            .col.m12
+              .btn.btn-flat
+                span Choose Image
+                = f.file_field :image
+              .file-path-wrapper
+                input.file-path.validate type='text'
       .input-field.col.s12
         = f.label :body
         = f.text_area :body, class: 'materialize-textarea'

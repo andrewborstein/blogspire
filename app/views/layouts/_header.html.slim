@@ -7,7 +7,7 @@ nav.light-blue.darken-4
       ul#nav-mobile.right.hide-on-med-and-down
         li= link_to 'Blogs', root_path
         - if current_user
-          li= link_to 'Profile', current_user
+          li= link_to 'Profile', edit_user_path(current_user)
           li= link_to 'Logout', destroy_user_session_path, method: :delete
         - else
           li= link_to 'Login', new_user_session_path

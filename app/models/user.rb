@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Associations
-  has_many :blogs
-  has_many :comments
+  has_many :blogs, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_attached_file :image, default_url: ''
 
   # Validations

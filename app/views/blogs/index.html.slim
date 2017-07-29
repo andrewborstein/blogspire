@@ -18,9 +18,10 @@
           - if blog.body.length > 350
             = link_to 'read more', blog
       .card-action
-        .chip
-          = image_tag blog.user.image.url
-          = blog.user.name
+        - if blog.user.image.present? || blog.user.name.present?
+          .chip
+            = image_tag blog.user.image.url if blog.user.image.present?
+            = blog.user.name if blog.user.name.present?
         em.grey-text.text-lighten-1= blog.created_at.stamp('Jan 1, 2000 @ 1:00pm')
 
 - else
