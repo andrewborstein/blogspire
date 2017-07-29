@@ -11,6 +11,6 @@ class Blog < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\z}
 
   def card_image_url
-    image.url.presence || 'http://via.placeholder.com/1000x250?text=%20'
+    image.url.presence || '//via.placeholder.com/1000x250?text=%20'
   end
 end
