@@ -4,9 +4,6 @@ h2.white-text Log In
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .row
       .input-field.col.s12
-        = f.text_field :name
-        = f.label :name, autofocus: true
-      .input-field.col.s12
         = f.text_field :email
         = f.label :email, autofocus: true
       .input-field.col.s12
@@ -18,6 +15,6 @@ h2.white-text Log In
           = f.label :remember_me
     .row
       .input-field.col.s12
-        = f.submit 'Log In', class: 'btn-large waves-effect waves-light orange accent-2'
+        = f.submit 'Log In', class: 'btn waves-effect waves-light orange accent-2'
 
 = render "devise/shared/links"

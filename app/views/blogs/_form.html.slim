@@ -12,8 +12,18 @@
       .input-field.col.s12
         = f.text_field :title
         = f.label :title
+      .input-field.file-field.col.s12
+        .row
+          .col.m3
+            = image_tag @blog.image.url, class: 'responsive-img'
+          .col.m9
+            .btn.btn-flat
+              span Choose Image
+              = f.file_field :image
+            .file-path-wrapper
+              input.file-path.validate type='text'
       .input-field.col.s12
         = f.label :body
         = f.text_area :body, class: 'materialize-textarea'
       .actions
-        = f.submit nil, class: 'btn-large waves-effect waves-light orange accent-2'
+        = f.submit nil, class: 'btn waves-effect waves-light orange accent-2'

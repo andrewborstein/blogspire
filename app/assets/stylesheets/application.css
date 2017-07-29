@@ -57,3 +57,22 @@ nav ul a,
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+
+.btn-floating.quarterway-fab {
+    position: absolute;
+    right: 84px;
+    bottom: -20px;
+}
+.card-link-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.card.no-page-title {
+  margin-top: 4em;
+}
+.collection.with-header .collection-header {
+  background-color: transparent;
+}

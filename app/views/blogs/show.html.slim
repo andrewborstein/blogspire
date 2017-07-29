@@ -1,54 +1,52 @@
-h2.white-text= @blog.title
-
-.card-panel
-  .card-content
-    .row
-      .col.s10
-        em.grey-text.text-lighten-1<
-          | Posted by
-          strong<>= @blogger_logged_in ? 'You' : @blog.user.name
-          | on
-          strong<>= @blog.created_at.stamp('Jan 1, 2000 @ 1:00pm')
-      - if @blogger_logged_in
-        .col.s1
-          = link_to edit_blog_path(@blog), class: 'btn-floating waves-effect waves-light orange accent-2 right' do
-            i.material-icons mode_edit
-        .col.s1
-          = link_to @blog, method: :delete, data: { confirm: 'Are you sure you want to delete this amazeballs blog?' }, class: 'btn-floating waves-effect waves-light red lighten-2 right' do
+.card.no-page-title
+  .card-image
+    = image_tag @blog.card_image_url
+    .card-title= @blog.title
+    - if @blogger_logged_in
+      = link_to edit_blog_path(@blog), class: 'btn-floating quarterway-fab waves-effect waves-light orange accent-2' do
+        i.material-icons mode_edit
+      = link_to @blog, method: :delete, data: { confirm: 'Are you sure you want to delete this amazeballs blog?' },
+            class: 'btn-floating halfway-fab waves-effect waves-light red lighten-2 right' do
             i.material-icons delete
-    .row
-      .col.s12
-        = simple_format @blog.body, class: 'flow-text'
-
-  hr
-
-  = form_for(@comment) do |f|
-    - if @comment.errors.any?
-      #error_explanation
-        h2
-          = pluralize(@comment.errors.count, "error")
-          | prohibited this blog from being saved:
-        ul
-          - @comment.errors.full_messages.each do |message|
-            li= message
-    .row
-      .input-field.col.s12
-        = f.label 'Comment'
-        = f.text_area :body, class: 'materialize-textarea'
-
-        = f.hidden_field :blog_id
-
-      .actions
-        = f.submit nil, class: 'btn-large waves-effect waves-light orange accent-2'
-
-  hr
-
-  ul
-    - @blog_comments.each do |comment|
-      li
-        strong>= comment.try(:user).try(:name)
-        | says
-        strong<= comment.body
+  .card-content
+    = simple_format @blog.body, class: 'flow-text'
 
 
-= link_to 'Back', blogs_path, class: 'btn waves-effect waves-light'
+  .card-action
+    .chip
+      = image_tag @blog.user.image.url
+      = @blog.user.name
+    em.grey-text.text-lighten-1= @blog.created_at.stamp('Jan 1, 2000 @ 1:00pm')
+  - if @blog_comments.present?
+    .grey.lighten-5
+      ul.collection.with-header
+        li.collection-header
+          h4 Comments
+        - @blog_comments.each do |comment|
+          li.collection-item
+            .chip
+              = image_tag comment.user.image.url
+              = comment.try(:user).try(:name)
+            = comment.body
+
+    .card-content
+      = form_for(@comment) do |f|
+        - if @comment.errors.any?
+          #error_explanation
+            h2
+              = pluralize(@comment.errors.count, "error")
+              | prohibited this blog from being saved:
+            ul
+              - @comment.errors.full_messages.each do |message|
+                li= message
+
+        .input-field
+          = f.label 'Leave a comment'
+          = f.text_area :body, class: 'materialize-textarea'
+
+          = f.hidden_field :blog_id
+
+        .actions
+          = f.submit 'Submit', class: 'btn waves-effect waves-light orange accent-2'
+
+= link_to 'Back', root_path, class: 'btn waves-effect waves-light'
