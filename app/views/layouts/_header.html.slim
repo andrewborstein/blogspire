@@ -1,15 +1,24 @@
 nav.light-blue.darken-4
   .nav-wrapper.row
     .col.s12
-      = link_to 'BlogSpire', blogs_path, class: 'brand-logo'
+      = link_to 'BlogSpire', root_path, class: 'brand-logo'
+      a.hide-on-large-and-up.button-collapse data-activates="slide-out" href="#"
+        i.material-icons menu
       ul#nav-mobile.right.hide-on-med-and-down
-        li
-          = link_to 'Index', blogs_path
-        li
-          = link_to 'Create', new_blog_path
-        li
-          - if current_user
-            = link_to 'Logout', destroy_user_session_path, method: :delete
-          - else
-            = link_to 'Login', new_user_session_path
+        li= link_to 'Blogs', root_path
+        - if current_user
+          li= link_to 'Profile', current_user
+          li= link_to 'Logout', destroy_user_session_path, method: :delete
+        - else
+          li= link_to 'Login', new_user_session_path
 
+ul#slide-out.side-nav
+  li= link_to 'BlogSpire', root_path, class: 'brand-logo'
+  li
+    .divider
+  li= link_to 'Blogs', root_path
+  - if current_user
+    li= link_to 'Profile', current_user
+    li= link_to 'Logout', destroy_user_session_path, method: :delete
+  - else
+    li= link_to 'Login', new_user_session_path

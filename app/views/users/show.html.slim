@@ -1,7 +1,13 @@
-p#notice= notice
-p
-  strong Name:
-  = @user.name
-= link_to 'Edit', edit_user_path(@user)
-| \
-= link_to 'Back', users_path
+h2.white-text User Profile
+
+.card-panel
+  .row
+    .col.m4.l3
+      = image_tag @user.image.url
+    .col.m8.l9
+      h4= @user.name
+      h5= @user.email
+  .row
+    .col.m12
+      = link_to 'Edit Profile', edit_user_path(@user), class: 'btn waves-effect waves-light'
+      = link_to 'Back to Index', root_path, class: 'btn waves-effect waves-light btn-flat'
