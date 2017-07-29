@@ -5,8 +5,7 @@ class User < ActiveRecord::Base
   has_attached_file :image, default_url: ''
 
   # Validations
-  validates :name, presence: true # string length
-  validates :email, presence: true # unique, string length
+  validates :email, presence: true, uniqueness: true
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\z}
 
   # Include default devise modules. Others available are:
