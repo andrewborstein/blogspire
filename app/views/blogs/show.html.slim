@@ -9,17 +9,21 @@
         class: 'btn-floating halfway-fab waves-effect waves-light red lighten-2 right' do
         i.material-icons delete
 
-  .card-content
-    = simple_format @blog.body, class: 'flow-text'
-
-
-  .card-action
+  .card-meta
     - if @blog.user.image.present? || @blog.user.name.present?
       .chip
         = image_tag @blog.user.image.url if @blog.user.image.present?
         = @blog.user.name if @blog.user.name.present?
-    em.time-ago.grey-text.text-lighten-1= "#{time_ago_in_words(@blog.created_at)} ago"
+      em.time-ago.grey-text.text-lighten-1= "#{time_ago_in_words(@blog.created_at)} ago"
+      .section-spacer
+      = link_to '#', class: 'like js-like', data: { blog_id: @blog.id, user_id: current_user.id } do
+        i.material-icons favorite
 
+  .card-content
+    .body-text= simple_format @blog.body, class: 'flow-text'
+
+
+  .card-content
   - if @blog_comments.present?
     .grey.lighten-5
       ul.collection.with-header

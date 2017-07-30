@@ -18862,3 +18862,1270 @@ Processing by BlogsController#index as HTML
   [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
   Rendered layouts/_header.html.slim (4.9ms)
 Completed 200 OK in 1043ms (Views: 1005.1ms | ActiveRecord: 3.1ms)
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "blogs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime) [0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" varchar, "user_id" integer, "blog_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime) [0m
+  [1m[35m (0.4ms)[0m  select sqlite_version(*)
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170729171223')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170612013204')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170612013233')[0m
+  [1m[35m (2.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170612013521')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170612151725')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170729153608')
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "blogs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime) [0m
+  [1m[35m (5.0ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" varchar, "user_id" integer, "blog_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (2.9ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (2.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170729171223')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170612013204')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170612013233')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170612013521')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170612151725')[0m
+  [1m[35m (1.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170729153608')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "blogs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" varchar, "user_id" integer, "blog_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170729171223')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170612013204')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170612013233')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170612013521')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170612151725')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170729153608')
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "blogs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime) [0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" varchar, "user_id" integer, "blog_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (1.4ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170729171223')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170612013204')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170612013233')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170612013521')
+  [1m[36m (3.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170612151725')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170729153608')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  begin transaction
+  [1m[36mUser Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'blandrew@florstein.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'blandrew@florstein.com' LIMIT 1
+  [1m[36mSQL (2.1ms)[0m  [1mINSERT INTO "users" ("email", "name", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "blandrew@florstein.com"], ["name", "Blandrew Florstein"], ["encrypted_password", "$2a$11$DtSEunQTq/Fz91Pe.0vQjOoiGuXbZwIk1DfAUoRQgiv5mesU76ONm"], ["created_at", "2017-07-30 14:08:53.430659"], ["updated_at", "2017-07-30 14:08:53.430659"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'newgal@whatevs.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'newgal@whatevs.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("email", "name", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["email", "newgal@whatevs.com"], ["name", "New Gal"], ["encrypted_password", "$2a$11$hwJaDRM/gjixRJqQgcKQUu89bAg.IT23kwhMIcW5LDOATF9hnxjE6"], ["created_at", "2017-07-30 14:08:53.620331"], ["updated_at", "2017-07-30 14:08:53.620331"]]
+  [1m[36m (9.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "blogs" ("body", "title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["body", "This is mah first post, ya hearrrrd."], ["title", "First Post!"], ["user_id", 1], ["created_at", "2017-07-30 14:08:53.688744"], ["updated_at", "2017-07-30 14:08:53.688744"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("body", "title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["body", "Lorem Catsum"], ["title", "Small kitty warm kitty little balls of fur under the bed eat grass, throw it back up yet scratch the\n    furniture play riveting piece on synthesizer keyboard eat half my food and ask for more. Swat at dog lie in the\n    sink all day brown cats with pink ears and hiss and stare at nothing then run suddenly away pounce on unsuspecting\n    person attack the dog then pretend like nothing happened for chase imaginary bugs. Flee in terror at cucumber\n    discovered on floor sit and stare, have my breakfast spaghetti yarn for show belly my left donut is missing, as is\n    my right.\n\n\n\n    Cats making all the muffins with tail in the air yet poop in a handbag look delicious and drink the soapy mopping\n    up water then puke giant foamy fur-balls so purr or warm up laptop with butt lick butt fart rainbows until owner\n    yells pee in litter box hiss at cats. Meow meow, i tell my human damn that dog , meow meow to be let out. Pushes\n    butt to face go into a room to decide you didn't want to be in there anyway or instantly break out into full speed\n    gallop across the house for no reason, lick sellotape. Claws in your leg meow to be let in, my slave human didn't\n    give me any food so i pooped on the floor leave hair everywhere.\n\n\n\n    Lick plastic bags pooping rainbow while flying in a toasted bread costume in space or poop on grasses for please\n    stop looking at your phone and pet me knock over christmas tree yet intently sniff hand. Plays league of legends.\n    Warm up laptop with butt lick butt fart rainbows until owner yells pee in litter box hiss at cats stares at human\n    while pushing stuff off a table or warm up laptop with butt lick butt fart rainbows until owner yells pee in litter\n    box hiss at cats for kitty loves pigs and human give me attention meow. Brown cats with pink ears purr.\n\n\n\n    Present belly, scratch hand when stroked. Small kitty warm kitty little balls of fur scamper so licks your face\n    lick plastic bags and sometimes switches in french and say \"miaou\" just because well why not cats making all the\n    muffins cereal boxes make for five star accommodation . Wake up human for food at 4am make meme, make cute face so\n    jump five feet high and sideways when a shadow moves attack the dog then pretend like nothing happened and cough\n    furball cereal boxes make for five star accommodation freak human out make funny noise mow mow mow mow mow mow\n    success now attack human. Wack the mini furry mouse jumps off balcony gives owner dead mouse at present then poops\n    in litter box snatches yarn and fights with dog cat chases laser then plays in grass finds tiny spot in cupboard\n    and sleeps all day jumps in bathtub and meows when owner fills food dish the cat knocks over the food dish cat\n    slides down the water slide and into pool and swims even though it does not like water lie in the sink all day show\n    belly. "], ["user_id", 1], ["created_at", "2017-07-30 14:08:53.692735"], ["updated_at", "2017-07-30 14:08:53.692735"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("body", "title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["body", "This is da kewlest blog ever. It's WEspirational!"], ["title", "It's Like In-spire, But Blog-spire"], ["user_id", 2], ["created_at", "2017-07-30 14:08:53.696072"], ["updated_at", "2017-07-30 14:08:53.696072"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mBlog Load (0.2ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "comments" ("blog_id", "body", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 3], ["body", "I couldn't agree more! My life is forever changed."], ["user_id", 1], ["created_at", "2017-07-30 14:08:53.709483"], ["updated_at", "2017-07-30 14:08:53.709483"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "comments" ("blog_id", "body", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 3], ["body", "Thanks for saying, stranger!"], ["user_id", 2], ["created_at", "2017-07-30 14:08:53.713395"], ["updated_at", "2017-07-30 14:08:53.713395"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:09:52 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BlogsController#index as HTML
+  [1m[35mBlog Load (0.5ms)[0m  SELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (119.4ms)
+  Rendered layouts/_head.html.slim (1173.8ms)
+  Rendered layouts/_header.html.slim (9.5ms)
+Completed 200 OK in 1366ms (Views: 1342.2ms | ActiveRecord: 2.1ms)
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "blogs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime) [0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" varchar, "user_id" integer, "blog_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170729171223')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170612013204')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170612013233')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170612013521')
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170612151725')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170729153608')
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "blogs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" varchar, "user_id" integer, "blog_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (2.4ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (1.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170729171223')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170612013204')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170612013233')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170612013521')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170612151725')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170729153608')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'blandrew@florstein.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'blandrew@florstein.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("email", "name", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "blandrew@florstein.com"], ["name", "Blandrew Florstein"], ["encrypted_password", "$2a$11$SMAFHhXI9M..WA.GP2u9ueflCwTM3jY/jJRj7j1vaV2HOjCGqpiJ."], ["created_at", "2017-07-30 14:10:34.214825"], ["updated_at", "2017-07-30 14:10:34.214825"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'newgal@whatevs.com' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'newgal@whatevs.com' LIMIT 1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "users" ("email", "name", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["email", "newgal@whatevs.com"], ["name", "New Gal"], ["encrypted_password", "$2a$11$glNsC0/Qe0syHcwSOmKILOu0K43H17rrxDTq6/8PLvdXOpKXOhmna"], ["created_at", "2017-07-30 14:10:34.421881"], ["updated_at", "2017-07-30 14:10:34.421881"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  begin transaction
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "blogs" ("body", "title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["body", "This is mah first post, ya hearrrrd."], ["title", "First Post!"], ["user_id", 1], ["created_at", "2017-07-30 14:10:34.489569"], ["updated_at", "2017-07-30 14:10:34.489569"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "blogs" ("title", "body", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "Lorem Catsum"], ["body", "Small kitty warm kitty little balls of fur under the bed eat grass, throw it back up yet scratch the\n    furniture play riveting piece on synthesizer keyboard eat half my food and ask for more. Swat at dog lie in the\n    sink all day brown cats with pink ears and hiss and stare at nothing then run suddenly away pounce on unsuspecting\n    person attack the dog then pretend like nothing happened for chase imaginary bugs. Flee in terror at cucumber\n    discovered on floor sit and stare, have my breakfast spaghetti yarn for show belly my left donut is missing, as is\n    my right.\n\n\n\n    Cats making all the muffins with tail in the air yet poop in a handbag look delicious and drink the soapy mopping\n    up water then puke giant foamy fur-balls so purr or warm up laptop with butt lick butt fart rainbows until owner\n    yells pee in litter box hiss at cats. Meow meow, i tell my human damn that dog , meow meow to be let out. Pushes\n    butt to face go into a room to decide you didn't want to be in there anyway or instantly break out into full speed\n    gallop across the house for no reason, lick sellotape. Claws in your leg meow to be let in, my slave human didn't\n    give me any food so i pooped on the floor leave hair everywhere.\n\n\n\n    Lick plastic bags pooping rainbow while flying in a toasted bread costume in space or poop on grasses for please\n    stop looking at your phone and pet me knock over christmas tree yet intently sniff hand. Plays league of legends.\n    Warm up laptop with butt lick butt fart rainbows until owner yells pee in litter box hiss at cats stares at human\n    while pushing stuff off a table or warm up laptop with butt lick butt fart rainbows until owner yells pee in litter\n    box hiss at cats for kitty loves pigs and human give me attention meow. Brown cats with pink ears purr.\n\n\n\n    Present belly, scratch hand when stroked. Small kitty warm kitty little balls of fur scamper so licks your face\n    lick plastic bags and sometimes switches in french and say \"miaou\" just because well why not cats making all the\n    muffins cereal boxes make for five star accommodation . Wake up human for food at 4am make meme, make cute face so\n    jump five feet high and sideways when a shadow moves attack the dog then pretend like nothing happened and cough\n    furball cereal boxes make for five star accommodation freak human out make funny noise mow mow mow mow mow mow\n    success now attack human. Wack the mini furry mouse jumps off balcony gives owner dead mouse at present then poops\n    in litter box snatches yarn and fights with dog cat chases laser then plays in grass finds tiny spot in cupboard\n    and sleeps all day jumps in bathtub and meows when owner fills food dish the cat knocks over the food dish cat\n    slides down the water slide and into pool and swims even though it does not like water lie in the sink all day show\n    belly. "], ["user_id", 1], ["created_at", "2017-07-30 14:10:34.493574"], ["updated_at", "2017-07-30 14:10:34.493574"]]
+  [1m[36m (2.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "blogs" ("body", "title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["body", "This is da kewlest blog ever. It's WEspirational!"], ["title", "It's Like In-spire, But Blog-spire"], ["user_id", 2], ["created_at", "2017-07-30 14:10:34.507593"], ["updated_at", "2017-07-30 14:10:34.507593"]]
+  [1m[36m (2.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  begin transaction
+  [1m[36mBlog Load (0.5ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "comments" ("blog_id", "body", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 3], ["body", "I couldn't agree more! My life is forever changed."], ["user_id", 1], ["created_at", "2017-07-30 14:10:34.538775"], ["updated_at", "2017-07-30 14:10:34.538775"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "comments" ("blog_id", "body", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 3], ["body", "Thanks for saying, stranger!"], ["user_id", 2], ["created_at", "2017-07-30 14:10:34.547539"], ["updated_at", "2017-07-30 14:10:34.547539"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:10:47 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BlogsController#index as HTML
+  [1m[35mBlog Load (0.2ms)[0m  SELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (95.2ms)
+  Rendered layouts/_head.html.slim (504.9ms)
+  Rendered layouts/_header.html.slim (92.5ms)
+Completed 200 OK in 750ms (Views: 728.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-30 10:11:36 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (1.6ms)
+  Rendered devise/sessions/new.html.slim within layouts/application (83.7ms)
+  Rendered layouts/_head.html.slim (112.9ms)
+  Rendered layouts/_header.html.slim (1.3ms)
+Completed 200 OK in 225ms (Views: 210.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2017-07-30 10:12:04 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UAv0TX2foA6/TTnOSAhu58LwMXJrFnfZFZS/VUXLBM3a153bE/paD457VvauetZG9Fu4J7ui83QYcAhX+psyRQ==", "user"=>{"email"=>"blandrew@florstein.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log In"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "blandrew@florstein.com"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2017-07-30 14:12:04.957146"], ["current_sign_in_at", "2017-07-30 14:12:04.957146"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2017-07-30 14:12:04.958567"], ["id", 1]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://pgreen.dev.wespire.com:3000/
+Completed 302 Found in 291ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:12:04 -0400
+Processing by BlogsController#index as HTML
+  [1m[35mBlog Load (0.2ms)[0m  SELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC
+  [1m[36mUser Load (3.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (13.7ms)
+  Rendered layouts/_head.html.slim (154.0ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.slim (2.8ms)
+Completed 200 OK in 178ms (Views: 172.7ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/blogs/1" for 127.0.0.1 at 2017-07-30 10:12:14 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBlog Load (0.2ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered blogs/show.html.slim within layouts/application (6.9ms)
+Completed 500 Internal Server Error in 109ms (ActiveRecord: 1.1ms)
+
+ActionView::Template::Error (Malformed indentation
+  /Users/andrewborstein/wespire/git/blogspire/app/views/blogs/show.html.slim, Line 17, Column 6
+    em.time-ago.grey-text.text-lighten-1= "#{time_ago_in_words(@blog.created_at)} ago"
+    ^
+):
+    14:         .chip
+    15:           = image_tag @blog.user.image.url if @blog.user.image.present?
+    16:           = @blog.user.name if @blog.user.name.present?
+    17:       em.time-ago.grey-text.text-lighten-1= "#{time_ago_in_words(@blog.created_at)} ago"
+    18: 
+    19:   .card-content
+    20:     .body-text= simple_format @blog.body, class: 'flow-text'
+  app/views/blogs/show.html.slim:17
+
+
+  Rendered /Users/andrewborstein/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.0ms)
+  Rendered /Users/andrewborstein/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /Users/andrewborstein/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Users/andrewborstein/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (38.5ms)
+  Rendered /Users/andrewborstein/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/andrewborstein/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/andrewborstein/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/andrewborstein/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/andrewborstein/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (30.4ms)
+  Rendered /Users/andrewborstein/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/andrewborstein/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/andrewborstein/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (85.3ms)
+
+
+Started GET "/blogs/1" for 127.0.0.1 at 2017-07-30 10:12:29 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mBlog Load (0.2ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC[0m  [["blog_id", 1]]
+  Rendered blogs/show.html.slim within layouts/application (16.1ms)
+  Rendered layouts/_head.html.slim (96.8ms)
+  Rendered layouts/_header.html.slim (1.1ms)
+Completed 200 OK in 131ms (Views: 123.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/blogs/1" for 127.0.0.1 at 2017-07-30 10:13:56 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC[0m  [["blog_id", 1]]
+  Rendered blogs/show.html.slim within layouts/application (3.2ms)
+  Rendered layouts/_head.html.slim (168.3ms)
+  Rendered layouts/_header.html.slim (0.6ms)
+Completed 200 OK in 182ms (Views: 178.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.self-694bda2f6fe037b6086bce728792fe8f8be03a391b1f97f8a64b8e2d8e5a2e36.css?body=1" for 127.0.0.1 at 2017-07-30 10:13:56 -0400
+
+
+Started GET "/blogs/1" for 127.0.0.1 at 2017-07-30 10:15:37 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC[0m  [["blog_id", 1]]
+  Rendered blogs/show.html.slim within layouts/application (2.2ms)
+  Rendered layouts/_head.html.slim (93.3ms)
+  Rendered layouts/_header.html.slim (0.7ms)
+Completed 200 OK in 106ms (Views: 102.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.self-f16ec4a92f409c9b351e0ce559efa7a08775c51f24b2c158eb72157562bc42c3.css?body=1" for 127.0.0.1 at 2017-07-30 10:15:37 -0400
+
+
+Started GET "/blogs/1" for 127.0.0.1 at 2017-07-30 10:18:27 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC[0m  [["blog_id", 1]]
+  Rendered blogs/show.html.slim within layouts/application (14.5ms)
+  Rendered layouts/_head.html.slim (98.8ms)
+  Rendered layouts/_header.html.slim (0.7ms)
+Completed 200 OK in 123ms (Views: 119.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/blogs/1" for 127.0.0.1 at 2017-07-30 10:19:25 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC[0m  [["blog_id", 1]]
+  Rendered blogs/show.html.slim within layouts/application (21.2ms)
+  Rendered layouts/_head.html.slim (75.0ms)
+  Rendered layouts/_header.html.slim (0.8ms)
+Completed 200 OK in 107ms (Views: 101.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/blogs/1" for 127.0.0.1 at 2017-07-30 10:20:03 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC[0m  [["blog_id", 1]]
+  Rendered blogs/show.html.slim within layouts/application (3.6ms)
+  Rendered layouts/_head.html.slim (92.2ms)
+  Rendered layouts/_header.html.slim (1.0ms)
+Completed 200 OK in 109ms (Views: 104.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.self-c378698a3b65732445f58305a376ecece23341aa9f12b9c065286d7d7a39a39e.css?body=1" for 127.0.0.1 at 2017-07-30 10:20:03 -0400
+
+
+Started GET "/blogs/1/edit" for 127.0.0.1 at 2017-07-30 10:24:50 -0400
+Processing by BlogsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mBlog Load (0.2ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered blogs/_form.html.slim (120.8ms)
+  Rendered blogs/edit.html.slim within layouts/application (153.2ms)
+  Rendered layouts/_head.html.slim (177.9ms)
+  Rendered layouts/_header.html.slim (0.8ms)
+Completed 200 OK in 347ms (Views: 341.5ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/blogs/1" for 127.0.0.1 at 2017-07-30 10:25:10 -0400
+Processing by BlogsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"p0mRJhufDW5YeVVpL+ytggDG6vYorNbgPqmaMBobyRjDsE70NfQlZrpipMnfD2oISTPWJSsweRPFcrM6/EZzDQ==", "blog"=>{"title"=>"First Post!", "image"=>#<ActionDispatch::Http::UploadedFile:0x007fee4aafeb38 @tempfile=#<Tempfile:/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/RackMultipart20170730-66190-1h0ska4.jpg>, @original_filename="305.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"blog[image]\"; filename=\"305.jpg\"\r\nContent-Type: image/jpeg\r\n">, "body"=>"This is mah first post, ya hearrrrd."}, "commit"=>"Update Blog", "id"=>"1"}
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+Command :: file -b --mime-type '/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/e587eb5368f020b6aa0a216e5f79206420170730-66190-34427m'
+Command :: file -b --mime-type '/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/922fa1f99684e3ed4d9c4fcf717dfe0920170730-66190-8rby1w'
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (1.1ms)[0m  UPDATE "blogs" SET "image_file_name" = ?, "image_content_type" = ?, "image_file_size" = ?, "image_updated_at" = ?, "updated_at" = ? WHERE "blogs"."id" = ?  [["image_file_name", "305.jpg"], ["image_content_type", "image/jpeg"], ["image_file_size", 51580], ["image_updated_at", "2017-07-30 14:25:10.028687"], ["updated_at", "2017-07-30 14:25:10.120739"], ["id", 1]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Redirected to http://pgreen.dev.wespire.com:3000/blogs/1
+Completed 302 Found in 114ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/blogs/1" for 127.0.0.1 at 2017-07-30 10:25:10 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC[0m  [["blog_id", 1]]
+  Rendered blogs/show.html.slim within layouts/application (4.0ms)
+  Rendered layouts/_head.html.slim (73.6ms)
+  Rendered layouts/_header.html.slim (2.1ms)
+Completed 200 OK in 92ms (Views: 88.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:25:14 -0400
+Processing by BlogsController#index as HTML
+  [1m[35mBlog Load (0.3ms)[0m  SELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (11.0ms)
+  Rendered layouts/_head.html.slim (112.1ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.slim (1.8ms)
+Completed 200 OK in 141ms (Views: 138.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/blogs/2" for 127.0.0.1 at 2017-07-30 10:25:15 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBlog Load (0.1ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.1ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC  [["blog_id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (3.0ms)
+  Rendered layouts/_head.html.slim (142.0ms)
+  Rendered layouts/_header.html.slim (0.9ms)
+Completed 200 OK in 157ms (Views: 150.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/blogs/2/edit" for 127.0.0.1 at 2017-07-30 10:25:17 -0400
+Processing by BlogsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBlog Load (0.2ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered blogs/_form.html.slim (4.1ms)
+  Rendered blogs/edit.html.slim within layouts/application (5.4ms)
+  Rendered layouts/_head.html.slim (155.8ms)
+  Rendered layouts/_header.html.slim (0.6ms)
+Completed 200 OK in 171ms (Views: 166.7ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/blogs/2" for 127.0.0.1 at 2017-07-30 10:26:39 -0400
+Processing by BlogsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0bpEWZ7eHc0jV6MLC6desQcw4qzYt9ALpYY+ktj8K3e1Q5uLsLU1xcFMUqv7RJk7TsXef9srf/heXReYPqGRYg==", "blog"=>{"title"=>"Lorem Catsum", "image"=>#<ActionDispatch::Http::UploadedFile:0x007fee4a9b0fd8 @tempfile=#<Tempfile:/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/RackMultipart20170730-66190-wask1.jpg>, @original_filename="300.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"blog[image]\"; filename=\"300.jpg\"\r\nContent-Type: image/jpeg\r\n">, "body"=>"Small kitty warm kitty little balls of fur under the bed eat grass, throw it back up yet scratch the\r\n    furniture play riveting piece on synthesizer keyboard eat half my food and ask for more. Swat at dog lie in the\r\n    sink all day brown cats with pink ears and hiss and stare at nothing then run suddenly away pounce on unsuspecting\r\n    person attack the dog then pretend like nothing happened for chase imaginary bugs. Flee in terror at cucumber\r\n    discovered on floor sit and stare, have my breakfast spaghetti yarn for show belly my left donut is missing, as is\r\n    my right.\r\n\r\n\r\n\r\n    Cats making all the muffins with tail in the air yet poop in a handbag look delicious and drink the soapy mopping\r\n    up water then puke giant foamy fur-balls so purr or warm up laptop with butt lick butt fart rainbows until owner\r\n    yells pee in litter box hiss at cats. Meow meow, i tell my human damn that dog , meow meow to be let out. Pushes\r\n    butt to face go into a room to decide you didn't want to be in there anyway or instantly break out into full speed\r\n    gallop across the house for no reason, lick sellotape. Claws in your leg meow to be let in, my slave human didn't\r\n    give me any food so i pooped on the floor leave hair everywhere.\r\n\r\n\r\n\r\n    Lick plastic bags pooping rainbow while flying in a toasted bread costume in space or poop on grasses for please\r\n    stop looking at your phone and pet me knock over christmas tree yet intently sniff hand. Plays league of legends.\r\n    Warm up laptop with butt lick butt fart rainbows until owner yells pee in litter box hiss at cats stares at human\r\n    while pushing stuff off a table or warm up laptop with butt lick butt fart rainbows until owner yells pee in litter\r\n    box hiss at cats for kitty loves pigs and human give me attention meow. Brown cats with pink ears purr.\r\n\r\n\r\n\r\n    Present belly, scratch hand when stroked. Small kitty warm kitty little balls of fur scamper so licks your face\r\n    lick plastic bags and sometimes switches in french and say \"miaou\" just because well why not cats making all the\r\n    muffins cereal boxes make for five star accommodation . Wake up human for food at 4am make meme, make cute face so\r\n    jump five feet high and sideways when a shadow moves attack the dog then pretend like nothing happened and cough\r\n    furball cereal boxes make for five star accommodation freak human out make funny noise mow mow mow mow mow mow\r\n    success now attack human. Wack the mini furry mouse jumps off balcony gives owner dead mouse at present then poops\r\n    in litter box snatches yarn and fights with dog cat chases laser then plays in grass finds tiny spot in cupboard\r\n    and sleeps all day jumps in bathtub and meows when owner fills food dish the cat knocks over the food dish cat\r\n    slides down the water slide and into pool and swims even though it does not like water lie in the sink all day show\r\n    belly. "}, "commit"=>"Update Blog", "id"=>"2"}
+  [1m[36mBlog Load (0.1ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Command :: file -b --mime-type '/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/04138c88349c4ef7281322bfa377c63620170730-66190-m3sz75'
+Command :: file -b --mime-type '/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/e878da3c7be60aa9b02ccacd49332e8220170730-66190-103y8qf'
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "blogs" SET "body" = ?, "image_file_name" = ?, "image_content_type" = ?, "image_file_size" = ?, "image_updated_at" = ?, "updated_at" = ? WHERE "blogs"."id" = ?[0m  [["body", "Small kitty warm kitty little balls of fur under the bed eat grass, throw it back up yet scratch the\r\n    furniture play riveting piece on synthesizer keyboard eat half my food and ask for more. Swat at dog lie in the\r\n    sink all day brown cats with pink ears and hiss and stare at nothing then run suddenly away pounce on unsuspecting\r\n    person attack the dog then pretend like nothing happened for chase imaginary bugs. Flee in terror at cucumber\r\n    discovered on floor sit and stare, have my breakfast spaghetti yarn for show belly my left donut is missing, as is\r\n    my right.\r\n\r\n\r\n\r\n    Cats making all the muffins with tail in the air yet poop in a handbag look delicious and drink the soapy mopping\r\n    up water then puke giant foamy fur-balls so purr or warm up laptop with butt lick butt fart rainbows until owner\r\n    yells pee in litter box hiss at cats. Meow meow, i tell my human damn that dog , meow meow to be let out. Pushes\r\n    butt to face go into a room to decide you didn't want to be in there anyway or instantly break out into full speed\r\n    gallop across the house for no reason, lick sellotape. Claws in your leg meow to be let in, my slave human didn't\r\n    give me any food so i pooped on the floor leave hair everywhere.\r\n\r\n\r\n\r\n    Lick plastic bags pooping rainbow while flying in a toasted bread costume in space or poop on grasses for please\r\n    stop looking at your phone and pet me knock over christmas tree yet intently sniff hand. Plays league of legends.\r\n    Warm up laptop with butt lick butt fart rainbows until owner yells pee in litter box hiss at cats stares at human\r\n    while pushing stuff off a table or warm up laptop with butt lick butt fart rainbows until owner yells pee in litter\r\n    box hiss at cats for kitty loves pigs and human give me attention meow. Brown cats with pink ears purr.\r\n\r\n\r\n\r\n    Present belly, scratch hand when stroked. Small kitty warm kitty little balls of fur scamper so licks your face\r\n    lick plastic bags and sometimes switches in french and say \"miaou\" just because well why not cats making all the\r\n    muffins cereal boxes make for five star accommodation . Wake up human for food at 4am make meme, make cute face so\r\n    jump five feet high and sideways when a shadow moves attack the dog then pretend like nothing happened and cough\r\n    furball cereal boxes make for five star accommodation freak human out make funny noise mow mow mow mow mow mow\r\n    success now attack human. Wack the mini furry mouse jumps off balcony gives owner dead mouse at present then poops\r\n    in litter box snatches yarn and fights with dog cat chases laser then plays in grass finds tiny spot in cupboard\r\n    and sleeps all day jumps in bathtub and meows when owner fills food dish the cat knocks over the food dish cat\r\n    slides down the water slide and into pool and swims even though it does not like water lie in the sink all day show\r\n    belly. "], ["image_file_name", "300.jpg"], ["image_content_type", "image/jpeg"], ["image_file_size", 63123], ["image_updated_at", "2017-07-30 14:26:39.849635"], ["updated_at", "2017-07-30 14:26:39.898853"], ["id", 2]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Redirected to http://pgreen.dev.wespire.com:3000/blogs/2
+Completed 302 Found in 81ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/blogs/2" for 127.0.0.1 at 2017-07-30 10:26:39 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBlog Load (0.1ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.1ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC  [["blog_id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (9.8ms)
+  Rendered layouts/_head.html.slim (114.3ms)
+  Rendered layouts/_header.html.slim (1.6ms)
+Completed 200 OK in 136ms (Views: 131.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:26:50 -0400
+Processing by BlogsController#index as HTML
+  [1m[36mBlog Load (0.3ms)[0m  [1mSELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (27.6ms)
+  Rendered layouts/_head.html.slim (93.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.slim (1.5ms)
+Completed 200 OK in 137ms (Views: 135.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/blogs/3" for 127.0.0.1 at 2017-07-30 10:26:52 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC[0m  [["blog_id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (32.6ms)
+  Rendered layouts/_head.html.slim (136.3ms)
+  Rendered layouts/_header.html.slim (0.7ms)
+Completed 200 OK in 181ms (Views: 173.5ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:27:31 -0400
+Processing by BlogsController#index as HTML
+  [1m[35mBlog Load (0.4ms)[0m  SELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (19.0ms)
+  Rendered layouts/_head.html.slim (377.0ms)
+  [1m[35mUser Load (1.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.slim (10.4ms)
+Completed 200 OK in 419ms (Views: 413.6ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2017-07-30 10:27:35 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://pgreen.dev.wespire.com:3000/users/1/edit
+Completed 302 Found in 7ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users/1/edit" for 127.0.0.1 at 2017-07-30 10:27:35 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered users/_form.html.slim (22.6ms)
+  Rendered users/edit.html.slim within layouts/application (32.3ms)
+  Rendered layouts/_head.html.slim (113.1ms)
+  Rendered layouts/_header.html.slim (1.8ms)
+Completed 200 OK in 159ms (Views: 156.5ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/users/1" for 127.0.0.1 at 2017-07-30 10:30:44 -0400
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5dW9tV1xofMPEvusEyd/LSjY9StOuVW9/1Ak6nOMXHiBLGJncxqJ++0JCgzjxLinYS3J+E0l+k4Eiw3gldHmbQ==", "user"=>{"name"=>"Blandrew Florstein", "image"=>#<ActionDispatch::Http::UploadedFile:0x007fee4b858130 @tempfile=#<Tempfile:/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/RackMultipart20170730-66190-1y7ov93.png>, @original_filename="People-Rotator_30-40M.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"user[image]\"; filename=\"People-Rotator_30-40M.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Submit", "id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+Command :: file -b --mime-type '/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/ddfa407ac3f8dc97c8ebc8c063f39b7920170730-66190-1d72kw5'
+Command :: file -b --mime-type '/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/48e34b8264cf02ac078ce8c81e90392820170730-66190-1ip8ff0'
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'blandrew@florstein.com' AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.9ms)[0m  [1mUPDATE "users" SET "image_file_name" = ?, "image_content_type" = ?, "image_file_size" = ?, "image_updated_at" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["image_file_name", "People-Rotator_30-40M.png"], ["image_content_type", "image/png"], ["image_file_size", 615909], ["image_updated_at", "2017-07-30 14:30:44.422245"], ["updated_at", "2017-07-30 14:30:44.568489"], ["id", 1]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Redirected to http://pgreen.dev.wespire.com:3000/users/1/edit
+Completed 302 Found in 188ms (ActiveRecord: 3.1ms)
+
+
+Started GET "/users/1/edit" for 127.0.0.1 at 2017-07-30 10:30:44 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered users/_form.html.slim (5.1ms)
+  Rendered users/edit.html.slim within layouts/application (6.7ms)
+  Rendered layouts/_head.html.slim (115.9ms)
+  Rendered layouts/_header.html.slim (1.3ms)
+Completed 200 OK in 136ms (Views: 132.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at 2017-07-30 10:30:58 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://pgreen.dev.wespire.com:3000/
+Filter chain halted as :set_user rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:30:58 -0400
+Processing by BlogsController#index as HTML
+  [1m[36mBlog Load (0.3ms)[0m  [1mSELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (9.4ms)
+  Rendered layouts/_head.html.slim (67.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.slim (1.5ms)
+Completed 200 OK in 83ms (Views: 81.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2017-07-30 10:31:32 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to http://pgreen.dev.wespire.com:3000/users/1/edit
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users/1/edit" for 127.0.0.1 at 2017-07-30 10:31:32 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (2.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered users/_form.html.slim (18.2ms)
+  Rendered users/edit.html.slim within layouts/application (18.9ms)
+  Rendered layouts/_head.html.slim (141.9ms)
+  Rendered layouts/_header.html.slim (0.8ms)
+Completed 200 OK in 217ms (Views: 168.9ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/users/1/edit" for 127.0.0.1 at 2017-07-30 10:32:18 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered users/_form.html.slim (11.5ms)
+  Rendered users/edit.html.slim within layouts/application (13.8ms)
+  Rendered layouts/_head.html.slim (76.3ms)
+  Rendered layouts/_header.html.slim (0.6ms)
+Completed 200 OK in 97ms (Views: 94.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1/edit" for 127.0.0.1 at 2017-07-30 10:34:20 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered users/_form.html.slim (36.1ms)
+  Rendered users/edit.html.slim within layouts/application (37.4ms)
+  Rendered layouts/_head.html.slim (140.6ms)
+  Rendered layouts/_header.html.slim (0.9ms)
+Completed 200 OK in 190ms (Views: 185.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.self-8f28091e0b8406ef733ec404debadc42c8994aebbc98a4f966e8fdfbd06ab727.css?body=1" for 127.0.0.1 at 2017-07-30 10:34:20 -0400
+
+
+Started GET "/users/1/edit" for 127.0.0.1 at 2017-07-30 10:34:56 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered users/_form.html.slim (14.1ms)
+  Rendered users/edit.html.slim within layouts/application (18.7ms)
+  Rendered layouts/_head.html.slim (77.6ms)
+  Rendered layouts/_header.html.slim (0.7ms)
+Completed 200 OK in 107ms (Views: 103.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/1/edit" for 127.0.0.1 at 2017-07-30 10:35:19 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered users/_form.html.slim (12.6ms)
+  Rendered users/edit.html.slim within layouts/application (17.3ms)
+  Rendered layouts/_head.html.slim (69.0ms)
+  Rendered layouts/_header.html.slim (0.6ms)
+Completed 200 OK in 94ms (Views: 90.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:35:46 -0400
+Processing by BlogsController#index as HTML
+  [1m[35mBlog Load (0.2ms)[0m  SELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (17.2ms)
+  Rendered layouts/_head.html.slim (95.7ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.slim (1.4ms)
+Completed 200 OK in 120ms (Views: 118.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/blogs/2" for 127.0.0.1 at 2017-07-30 10:35:51 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBlog Load (0.1ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC  [["blog_id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (12.0ms)
+  Rendered layouts/_head.html.slim (102.2ms)
+  Rendered layouts/_header.html.slim (0.7ms)
+Completed 200 OK in 136ms (Views: 128.2ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2017-07-30 10:35:55 -0400
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"eHpxwP33dLMR8869YVt2f/KBlQOfAe8vZuyGkjonceMcg64S05xcu/PoPx2RuLH1u3Sp0JydQNydN6+Y3HrL9g=="}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+Redirected to http://pgreen.dev.wespire.com:3000/
+Completed 302 Found in 20ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:35:55 -0400
+Processing by BlogsController#index as HTML
+  [1m[35mBlog Load (0.2ms)[0m  SELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (6.7ms)
+  Rendered layouts/_head.html.slim (60.5ms)
+  Rendered layouts/_header.html.slim (0.8ms)
+Completed 200 OK in 72ms (Views: 71.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-30 10:35:57 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (0.8ms)
+  Rendered devise/sessions/new.html.slim within layouts/application (5.2ms)
+  Rendered layouts/_head.html.slim (115.6ms)
+  Rendered layouts/_header.html.slim (0.6ms)
+Completed 200 OK in 138ms (Views: 135.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2017-07-30 10:36:07 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aYLqgl1s89Y4vMdNCdDCHAFM71v2qHdzfeDDX3IM9td/ZIG9c8cn40L9jfJtbDp5RRI3rfncJ3rls0Dj3U5fmQ==", "user"=>{"email"=>"newgal@email.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log In"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "newgal@email.com"]]
+Completed 401 Unauthorized in 10ms (ActiveRecord: 0.3ms)
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aYLqgl1s89Y4vMdNCdDCHAFM71v2qHdzfeDDX3IM9td/ZIG9c8cn40L9jfJtbDp5RRI3rfncJ3rls0Dj3U5fmQ==", "user"=>{"email"=>"newgal@email.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log In"}
+  Rendered devise/shared/_links.html.erb (0.5ms)
+  Rendered devise/sessions/new.html.slim within layouts/application (4.0ms)
+  Rendered layouts/_head.html.slim (72.9ms)
+  Rendered layouts/_header.html.slim (0.6ms)
+Completed 200 OK in 241ms (Views: 82.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2017-07-30 10:36:18 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KAbdN0SA+x0HOkUS91wZcyEfuzKRCu7Ct0Jr7Ylpr0g+4LYIaisvKH17D62T4OEWZUFjxJ5+vssvEehRJisGBg==", "user"=>{"email"=>"newgal@whatevs.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["email", "newgal@whatevs.com"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2017-07-30 14:36:18.739623"], ["current_sign_in_at", "2017-07-30 14:36:18.739623"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2017-07-30 14:36:18.740319"], ["id", 2]]
+  [1m[35m (9.1ms)[0m  commit transaction
+Redirected to http://pgreen.dev.wespire.com:3000/
+Completed 302 Found in 202ms (ActiveRecord: 9.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:36:18 -0400
+Processing by BlogsController#index as HTML
+  [1m[36mBlog Load (0.2ms)[0m  [1mSELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (6.6ms)
+  Rendered layouts/_head.html.slim (74.2ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+  Rendered layouts/_header.html.slim (5.4ms)
+Completed 200 OK in 93ms (Views: 89.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/blogs/3" for 127.0.0.1 at 2017-07-30 10:36:20 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC[0m  [["blog_id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (10.9ms)
+  Rendered layouts/_head.html.slim (183.9ms)
+  Rendered layouts/_header.html.slim (0.9ms)
+Completed 200 OK in 209ms (Views: 200.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/blogs/3/edit" for 127.0.0.1 at 2017-07-30 10:36:22 -0400
+Processing by BlogsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mBlog Load (0.2ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+  Rendered blogs/_form.html.slim (3.2ms)
+  Rendered blogs/edit.html.slim within layouts/application (4.7ms)
+  Rendered layouts/_head.html.slim (172.6ms)
+  Rendered layouts/_header.html.slim (1.0ms)
+Completed 200 OK in 186ms (Views: 183.0ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/blogs/3" for 127.0.0.1 at 2017-07-30 10:36:31 -0400
+Processing by BlogsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"q4ipzY/LMIWxxuwL/68e51jCEtTpqcPHrM/9hbuxaRoz7KBdIAo/Mye07ZJMdAZ+VbxUMPGaLO3X+p29l4gaPA==", "blog"=>{"title"=>"It's Like In-spire, But Blog-spire", "image"=>#<ActionDispatch::Http::UploadedFile:0x007fee48e88a58 @tempfile=#<Tempfile:/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/RackMultipart20170730-66190-nxhrhz.png>, @original_filename="woman-smiling.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"blog[image]\"; filename=\"woman-smiling.png\"\r\nContent-Type: image/png\r\n">, "body"=>"This is da kewlest blog ever. It's WEspirational!"}, "commit"=>"Update Blog", "id"=>"3"}
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.2ms)[0m  begin transaction
+Command :: file -b --mime-type '/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/121ea7d23a4d1b6f2a1935297f3e12dc20170730-66190-gdlsr'
+Command :: file -b --mime-type '/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/427be4fddb0f53844c4dd308b90e9ded20170730-66190-1k0pdzv'
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "blogs" SET "image_file_name" = ?, "image_content_type" = ?, "image_file_size" = ?, "image_updated_at" = ?, "updated_at" = ? WHERE "blogs"."id" = ?  [["image_file_name", "woman-smiling.png"], ["image_content_type", "image/png"], ["image_file_size", 696640], ["image_updated_at", "2017-07-30 14:36:31.271410"], ["updated_at", "2017-07-30 14:36:31.325029"], ["id", 3]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://pgreen.dev.wespire.com:3000/blogs/3
+Completed 302 Found in 112ms (ActiveRecord: 2.2ms)
+
+
+Started GET "/blogs/3" for 127.0.0.1 at 2017-07-30 10:36:31 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mBlog Load (0.2ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC[0m  [["blog_id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (9.0ms)
+  Rendered layouts/_head.html.slim (79.4ms)
+  Rendered layouts/_header.html.slim (0.8ms)
+Completed 200 OK in 103ms (Views: 95.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/blogs/3/edit" for 127.0.0.1 at 2017-07-30 10:36:34 -0400
+Processing by BlogsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mBlog Load (0.3ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+  Rendered blogs/_form.html.slim (42.1ms)
+  Rendered blogs/edit.html.slim within layouts/application (43.8ms)
+  Rendered layouts/_head.html.slim (99.7ms)
+  Rendered layouts/_header.html.slim (1.3ms)
+Completed 200 OK in 166ms (Views: 160.3ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/blogs/3" for 127.0.0.1 at 2017-07-30 10:36:47 -0400
+Processing by BlogsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hjvRo0Shg864Q1vLXnrpRXMxbpSX5bS61JEzeuq+9VkeX9gz62CMeC4xWlLtofHcfk8ocI/WW5CvpFNCxoeGfw==", "blog"=>{"title"=>"It's Like In-spire, But Blog-spire", "image"=>#<ActionDispatch::Http::UploadedFile:0x007fee45374868 @tempfile=#<Tempfile:/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/RackMultipart20170730-66190-2154jg.jpg>, @original_filename="316.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"blog[image]\"; filename=\"316.jpg\"\r\nContent-Type: image/jpeg\r\n">, "body"=>"This is da kewlest blog ever. It's WEspirational!"}, "commit"=>"Update Blog", "id"=>"3"}
+  [1m[35mBlog Load (0.2ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  begin transaction
+Command :: file -b --mime-type '/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/f416f3a164a9d232167083e8c148c36e20170730-66190-1irrx6k'
+Command :: file -b --mime-type '/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/8292772184ade12fde6d4aa56525b45520170730-66190-yetqek'
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "blogs" SET "image_file_name" = ?, "image_content_type" = ?, "image_file_size" = ?, "image_updated_at" = ?, "updated_at" = ? WHERE "blogs"."id" = ?  [["image_file_name", "316.jpg"], ["image_content_type", "image/jpeg"], ["image_file_size", 24602], ["image_updated_at", "2017-07-30 14:36:47.696031"], ["updated_at", "2017-07-30 14:36:47.762830"], ["id", 3]]
+[paperclip] deleting /Users/andrewborstein/wespire/git/blogspire/public/system/blogs/images/000/000/003/original/woman-smiling.png
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://pgreen.dev.wespire.com:3000/blogs/3
+Completed 302 Found in 120ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/blogs/3" for 127.0.0.1 at 2017-07-30 10:36:47 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC[0m  [["blog_id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (8.2ms)
+  Rendered layouts/_head.html.slim (89.8ms)
+  Rendered layouts/_header.html.slim (0.8ms)
+Completed 200 OK in 108ms (Views: 102.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at 2017-07-30 10:36:50 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+  Rendered users/_form.html.slim (4.2ms)
+  Rendered users/edit.html.slim within layouts/application (6.3ms)
+  Rendered layouts/_head.html.slim (169.7ms)
+  Rendered layouts/_header.html.slim (0.6ms)
+Completed 200 OK in 195ms (Views: 189.6ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/users/2" for 127.0.0.1 at 2017-07-30 10:36:54 -0400
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"LKifrkuqjMQDjVJkydU56E4e/hrxBLsf5nW54iQESRq0zJY+5GuDcpX/U/16DiFxQ2C4/uk3VDWdQNnaCD06PA==", "user"=>{"image"=>#<ActionDispatch::Http::UploadedFile:0x007fee4ba1a680 @tempfile=#<Tempfile:/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/RackMultipart20170730-66190-4qhyi3.png>, @original_filename="woman-smiling.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"user[image]\"; filename=\"woman-smiling.png\"\r\nContent-Type: image/png\r\n">, "name"=>"New Gal", "email"=>"blandrew@florstein.com", "password"=>"[FILTERED]"}, "commit"=>"Submit", "id"=>"2"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+Unpermitted parameters: email, password
+  [1m[35m (0.1ms)[0m  begin transaction
+Command :: file -b --mime-type '/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/0b7b21aa014b94efa95799c28260e1ab20170730-66190-1hi5fae'
+Command :: file -b --mime-type '/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/645e8a79556bc3cd4b208fdd99fff82f20170730-66190-1v5eqza'
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'newgal@whatevs.com' AND "users"."id" != 2) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "image_file_name" = ?, "image_content_type" = ?, "image_file_size" = ?, "image_updated_at" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["image_file_name", "woman-smiling.png"], ["image_content_type", "image/png"], ["image_file_size", 696640], ["image_updated_at", "2017-07-30 14:36:54.700447"], ["updated_at", "2017-07-30 14:36:54.743312"], ["id", 2]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://pgreen.dev.wespire.com:3000/users/2/edit
+Completed 302 Found in 62ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at 2017-07-30 10:36:54 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+  Rendered users/_form.html.slim (4.7ms)
+  Rendered users/edit.html.slim within layouts/application (6.2ms)
+  Rendered layouts/_head.html.slim (81.7ms)
+  Rendered layouts/_header.html.slim (0.7ms)
+Completed 200 OK in 100ms (Views: 93.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:37:02 -0400
+Processing by BlogsController#index as HTML
+  [1m[35mBlog Load (0.5ms)[0m  SELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (27.3ms)
+  Rendered layouts/_head.html.slim (129.9ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+  Rendered layouts/_header.html.slim (3.3ms)
+Completed 200 OK in 181ms (Views: 177.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/blogs/3" for 127.0.0.1 at 2017-07-30 10:37:10 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBlog Load (0.1ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC  [["blog_id", 3]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (24.1ms)
+  Rendered layouts/_head.html.slim (87.0ms)
+  Rendered layouts/_header.html.slim (0.7ms)
+Completed 200 OK in 121ms (Views: 115.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/blogs/3" for 127.0.0.1 at 2017-07-30 10:37:35 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBlog Load (0.3ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mComment Load (0.1ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC  [["blog_id", 3]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (16.9ms)
+  Rendered layouts/_head.html.slim (66.6ms)
+  Rendered layouts/_header.html.slim (0.8ms)
+Completed 200 OK in 96ms (Views: 89.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/blogs/3" for 127.0.0.1 at 2017-07-30 10:37:41 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBlog Load (0.1ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mComment Load (0.1ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC  [["blog_id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (25.1ms)
+  Rendered layouts/_head.html.slim (59.5ms)
+  Rendered layouts/_header.html.slim (0.7ms)
+Completed 200 OK in 174ms (Views: 166.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/blogs/3" for 127.0.0.1 at 2017-07-30 10:38:00 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBlog Load (0.1ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mComment Load (0.1ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC  [["blog_id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (18.8ms)
+  Rendered layouts/_head.html.slim (72.6ms)
+  Rendered layouts/_header.html.slim (0.8ms)
+Completed 200 OK in 101ms (Views: 97.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/blogs/3" for 127.0.0.1 at 2017-07-30 10:40:29 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBlog Load (0.1ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC  [["blog_id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (12.0ms)
+  Rendered layouts/_head.html.slim (250.9ms)
+  Rendered layouts/_header.html.slim (1.1ms)
+Completed 200 OK in 284ms (Views: 276.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/application.self-0059a16b29f644110f8730b52e171a51745db218a5d4aad247aeb8f7adfd373a.css?body=1" for 127.0.0.1 at 2017-07-30 10:40:30 -0400
+
+
+Started GET "/blogs/3" for 127.0.0.1 at 2017-07-30 10:40:43 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBlog Load (0.2ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mComment Load (1.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC  [["blog_id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (34.5ms)
+  Rendered layouts/_head.html.slim (66.6ms)
+  Rendered layouts/_header.html.slim (0.6ms)
+Completed 200 OK in 114ms (Views: 107.9ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:41:04 -0400
+Processing by BlogsController#index as HTML
+  [1m[36mBlog Load (0.3ms)[0m  [1mSELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (13.9ms)
+  Rendered layouts/_head.html.slim (108.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+  Rendered layouts/_header.html.slim (2.7ms)
+Completed 200 OK in 144ms (Views: 141.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/blogs/2" for 127.0.0.1 at 2017-07-30 10:41:05 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC[0m  [["blog_id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (5.4ms)
+  Rendered layouts/_head.html.slim (209.8ms)
+  Rendered layouts/_header.html.slim (0.9ms)
+Completed 200 OK in 226ms (Views: 221.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2017-07-30 10:41:41 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+Redirected to http://pgreen.dev.wespire.com:3000/users/2/edit
+Completed 302 Found in 6ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at 2017-07-30 10:41:41 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+  Rendered users/_form.html.slim (5.1ms)
+  Rendered users/edit.html.slim within layouts/application (17.1ms)
+  Rendered layouts/_head.html.slim (175.5ms)
+  Rendered layouts/_header.html.slim (0.7ms)
+Completed 200 OK in 203ms (Views: 199.8ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2017-07-30 10:41:44 -0400
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"82rhLInmfGtWoiGHx4yEq2gs/WpHBPd6QK58Wn119WdrDui8Jidz3cDQIB50V5wyZVK7jl83GFA7mxxiUUyGQQ=="}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+Redirected to http://pgreen.dev.wespire.com:3000/
+Completed 302 Found in 7ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:41:44 -0400
+Processing by BlogsController#index as HTML
+  [1m[36mBlog Load (0.2ms)[0m  [1mSELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (11.2ms)
+  Rendered layouts/_head.html.slim (105.4ms)
+  Rendered layouts/_header.html.slim (0.8ms)
+Completed 200 OK in 122ms (Views: 120.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-30 10:41:48 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (0.7ms)
+  Rendered devise/sessions/new.html.slim within layouts/application (6.6ms)
+  Rendered layouts/_head.html.slim (141.0ms)
+  Rendered layouts/_header.html.slim (1.2ms)
+Completed 200 OK in 161ms (Views: 155.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2017-07-30 10:41:50 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zEZ4h+hXeTzTRVo9ojdfv9d0QtX1zmSJ+lsIscIrriZ2Mrz0O0W0G/nFQD/qdeR6HJL5ii4BhdReBhfSKNf9JQ==", "user"=>{"email"=>"blandrew@florstein.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["email", "blandrew@florstein.com"]]
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "users" SET "current_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["current_sign_in_at", "2017-07-30 14:41:51.019529"], ["sign_in_count", 2], ["updated_at", "2017-07-30 14:41:51.035291"], ["id", 1]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Redirected to http://pgreen.dev.wespire.com:3000/
+Completed 302 Found in 291ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:41:51 -0400
+Processing by BlogsController#index as HTML
+  [1m[36mBlog Load (0.2ms)[0m  [1mSELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (18.4ms)
+  Rendered layouts/_head.html.slim (115.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.slim (3.5ms)
+Completed 200 OK in 149ms (Views: 146.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/blogs/2" for 127.0.0.1 at 2017-07-30 10:41:54 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mBlog Load (0.2ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC[0m  [["blog_id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (5.1ms)
+  Rendered layouts/_head.html.slim (158.8ms)
+  Rendered layouts/_header.html.slim (0.9ms)
+Completed 200 OK in 183ms (Views: 170.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/blogs/2/edit" for 127.0.0.1 at 2017-07-30 10:41:55 -0400
+Processing by BlogsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered blogs/_form.html.slim (4.5ms)
+  Rendered blogs/edit.html.slim within layouts/application (6.0ms)
+  Rendered layouts/_head.html.slim (230.5ms)
+  Rendered layouts/_header.html.slim (1.4ms)
+Completed 200 OK in 247ms (Views: 243.1ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/blogs/2" for 127.0.0.1 at 2017-07-30 10:43:15 -0400
+Processing by BlogsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"q+lHWZETDVvhpL5MJrgvgxyLnLR23eUSrtDnk/paW2PTKZ2QL5JTg3SDK2060r+rINyB+44mdnaOUDI7jqj29Q==", "blog"=>{"title"=>"Lorem Catsum", "body"=>"Small kitty warm kitty little balls of fur under the bed eat grass, throw it back up yet scratch the furniture play riveting piece on synthesizer keyboard eat half my food and ask for more. Swat at dog lie in the sink all day brown cats with pink ears and hiss and stare at nothing then run suddenly away pounce on unsuspecting person attack the dog then pretend like nothing happened for chase imaginary bugs. Flee in terror at cucumber discovered on floor sit and stare, have my breakfast spaghetti yarn for show belly my left donut is missing, as is my right.\r\n\r\nCats making all the muffins with tail in the air yet poop in a handbag look delicious and drink the soapy mopping up water then puke giant foamy fur-balls so purr or warm up laptop with butt lick butt fart rainbows until owner yells pee in litter box hiss at cats. Meow meow, i tell my human damn that dog , meow meow to be let out. Pushes butt to face go into a room to decide you didn't want to be in there anyway or instantly break out into full speed gallop across the house for no reason, lick sellotape. Claws in your leg meow to be let in, my slave human didn't give me any food so i pooped on the floor leave hair everywhere.\r\n\r\nLick plastic bags pooping rainbow while flying in a toasted bread costume in space or poop on grasses for please stop looking at your phone and pet me knock over christmas tree yet intently sniff hand. Plays league of legends. Warm up laptop with butt lick butt fart rainbows until owner yells pee in litter box hiss at cats stares at human while pushing stuff off a table or warm up laptop with butt lick butt fart rainbows until owner yells pee in litter box hiss at cats for kitty loves pigs and human give me attention meow. Brown cats with pink ears purr.\r\n\r\nPresent belly, scratch hand when stroked. Small kitty warm kitty little balls of fur scamper so licks your face lick plastic bags and sometimes switches in french and say \"miaou\" just because well why not cats making all the muffins cereal boxes make for five star accommodation . Wake up human for food at 4am make meme, make cute face so jump five feet high and sideways when a shadow moves attack the dog then pretend like nothing happened and cough furball cereal boxes make for five star accommodation freak human out make funny noise mow mow mow mow mow mow success now attack human. Wack the mini furry mouse jumps off balcony gives owner dead mouse at present then poops in litter box snatches yarn and fights with dog cat chases laser then plays in grass finds tiny spot in cupboard and sleeps all day jumps in bathtub and meows when owner fills food dish the cat knocks over the food dish cat slides down the water slide and into pool and swims even though it does not like water lie in the sink all day show belly. "}, "commit"=>"Update Blog", "id"=>"2"}
+  [1m[35mBlog Load (0.7ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (1.8ms)[0m  UPDATE "blogs" SET "body" = ?, "updated_at" = ? WHERE "blogs"."id" = ?  [["body", "Small kitty warm kitty little balls of fur under the bed eat grass, throw it back up yet scratch the furniture play riveting piece on synthesizer keyboard eat half my food and ask for more. Swat at dog lie in the sink all day brown cats with pink ears and hiss and stare at nothing then run suddenly away pounce on unsuspecting person attack the dog then pretend like nothing happened for chase imaginary bugs. Flee in terror at cucumber discovered on floor sit and stare, have my breakfast spaghetti yarn for show belly my left donut is missing, as is my right.\r\n\r\nCats making all the muffins with tail in the air yet poop in a handbag look delicious and drink the soapy mopping up water then puke giant foamy fur-balls so purr or warm up laptop with butt lick butt fart rainbows until owner yells pee in litter box hiss at cats. Meow meow, i tell my human damn that dog , meow meow to be let out. Pushes butt to face go into a room to decide you didn't want to be in there anyway or instantly break out into full speed gallop across the house for no reason, lick sellotape. Claws in your leg meow to be let in, my slave human didn't give me any food so i pooped on the floor leave hair everywhere.\r\n\r\nLick plastic bags pooping rainbow while flying in a toasted bread costume in space or poop on grasses for please stop looking at your phone and pet me knock over christmas tree yet intently sniff hand. Plays league of legends. Warm up laptop with butt lick butt fart rainbows until owner yells pee in litter box hiss at cats stares at human while pushing stuff off a table or warm up laptop with butt lick butt fart rainbows until owner yells pee in litter box hiss at cats for kitty loves pigs and human give me attention meow. Brown cats with pink ears purr.\r\n\r\nPresent belly, scratch hand when stroked. Small kitty warm kitty little balls of fur scamper so licks your face lick plastic bags and sometimes switches in french and say \"miaou\" just because well why not cats making all the muffins cereal boxes make for five star accommodation . Wake up human for food at 4am make meme, make cute face so jump five feet high and sideways when a shadow moves attack the dog then pretend like nothing happened and cough furball cereal boxes make for five star accommodation freak human out make funny noise mow mow mow mow mow mow success now attack human. Wack the mini furry mouse jumps off balcony gives owner dead mouse at present then poops in litter box snatches yarn and fights with dog cat chases laser then plays in grass finds tiny spot in cupboard and sleeps all day jumps in bathtub and meows when owner fills food dish the cat knocks over the food dish cat slides down the water slide and into pool and swims even though it does not like water lie in the sink all day show belly. "], ["updated_at", "2017-07-30 14:43:16.018321"], ["id", 2]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Redirected to http://pgreen.dev.wespire.com:3000/blogs/2
+Completed 302 Found in 42ms (ActiveRecord: 4.8ms)
+
+
+Started GET "/blogs/2" for 127.0.0.1 at 2017-07-30 10:43:16 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mBlog Load (0.1ms)[0m  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC[0m  [["blog_id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (4.9ms)
+  Rendered layouts/_head.html.slim (185.5ms)
+  Rendered layouts/_header.html.slim (2.3ms)
+Completed 200 OK in 211ms (Views: 203.0ms | ActiveRecord: 0.6ms)
+  [1m[36mBlog Load (0.3ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 2]]
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:46:42 -0400
+Processing by BlogsController#index as HTML
+  [1m[35mBlog Load (0.3ms)[0m  SELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (29.0ms)
+  Rendered layouts/_head.html.slim (106.8ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.slim (1.6ms)
+Completed 200 OK in 149ms (Views: 145.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/blogs/2" for 127.0.0.1 at 2017-07-30 10:46:49 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBlog Load (0.2ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC  [["blog_id", 2]]
+  Rendered blogs/show.html.slim within layouts/application (7.0ms)
+  Rendered layouts/_head.html.slim (235.7ms)
+  Rendered layouts/_header.html.slim (1.6ms)
+Completed 200 OK in 259ms (Views: 251.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/blogs/1" for 127.0.0.1 at 2017-07-30 10:47:02 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBlog Load (0.1ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC  [["blog_id", 1]]
+  Rendered blogs/show.html.slim within layouts/application (7.4ms)
+  Rendered layouts/_head.html.slim (108.0ms)
+  Rendered layouts/_header.html.slim (1.5ms)
+Completed 200 OK in 128ms (Views: 123.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/blogs/1/edit" for 127.0.0.1 at 2017-07-30 10:47:05 -0400
+Processing by BlogsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBlog Load (0.1ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered blogs/_form.html.slim (6.0ms)
+  Rendered blogs/edit.html.slim within layouts/application (8.0ms)
+  Rendered layouts/_head.html.slim (112.8ms)
+  Rendered layouts/_header.html.slim (0.9ms)
+Completed 200 OK in 140ms (Views: 136.4ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/blogs/1" for 127.0.0.1 at 2017-07-30 10:47:33 -0400
+Processing by BlogsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"23ldNJbvSWY08XJOZGpN6ny4sNzy3P/HPxI2FoW6PUajuYf9KG4XvqHW5294AN3CQO+tkwonbKMfkuO+8UiQ0A==", "blog"=>{"title"=>"First Post!", "image"=>#<ActionDispatch::Http::UploadedFile:0x007fee43a79778 @tempfile=#<Tempfile:/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/RackMultipart20170730-66190-hg6rde.jpg>, @original_filename="road_big.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"blog[image]\"; filename=\"road_big.jpg\"\r\nContent-Type: image/jpeg\r\n">, "body"=>"This is mah first post, ya hearrrrd."}, "commit"=>"Update Blog", "id"=>"1"}
+  [1m[36mBlog Load (0.2ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mbegin transaction[0m
+Command :: file -b --mime-type '/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/3806c1e25af543d2768ec13e24967d7e20170730-66190-bahhl9'
+Command :: file -b --mime-type '/var/folders/d7/6_lgndls0x7_v_lq4g26yrb40000gn/T/307d170e62be1afec61f743b9883bf9d20170730-66190-1b08wnu'
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "blogs" SET "image_file_name" = ?, "image_file_size" = ?, "image_updated_at" = ?, "updated_at" = ? WHERE "blogs"."id" = ?[0m  [["image_file_name", "road_big.jpg"], ["image_file_size", 232489], ["image_updated_at", "2017-07-30 14:47:33.856203"], ["updated_at", "2017-07-30 14:47:33.943731"], ["id", 1]]
+[paperclip] deleting /Users/andrewborstein/wespire/git/blogspire/public/system/blogs/images/000/000/001/original/305.jpg
+  [1m[35m (1.1ms)[0m  commit transaction
+Redirected to http://pgreen.dev.wespire.com:3000/blogs/1
+Completed 302 Found in 125ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/blogs/1" for 127.0.0.1 at 2017-07-30 10:47:33 -0400
+Processing by BlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBlog Load (0.2ms)[0m  [1mSELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.1ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."blog_id" = ?  ORDER BY "comments"."created_at" ASC  [["blog_id", 1]]
+  Rendered blogs/show.html.slim within layouts/application (7.0ms)
+  Rendered layouts/_head.html.slim (220.4ms)
+  Rendered layouts/_header.html.slim (1.1ms)
+Completed 200 OK in 254ms (Views: 245.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-30 10:47:37 -0400
+Processing by BlogsController#index as HTML
+  [1m[36mBlog Load (0.3ms)[0m  [1mSELECT "blogs".* FROM "blogs"  ORDER BY "blogs"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered blogs/index.html.slim within layouts/application (26.0ms)
+  Rendered layouts/_head.html.slim (158.4ms)
+  [1m[36mUser Load (1.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.slim (8.5ms)
+Completed 200 OK in 201ms (Views: 197.2ms | ActiveRecord: 2.4ms)

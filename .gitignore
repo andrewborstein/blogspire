@@ -43,3 +43,15 @@ cookbooks
 .tags
 
 *.sqlite3
+
+.rubocop.yml
+
+*.sqlite3
+
+db/seeds.rb
+
+*.sqlite3
+
+*.log
+
+*.cache

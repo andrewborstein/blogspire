@@ -92,3 +92,31 @@ nav ul a,
     display: block
   }
 }
+.card-meta {
+  padding: 24px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  height: auto;
+}
+.section-spacer {
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+.like {
+  color: #666;
+}
+.body-text {
+  max-width: 550px;
+  margin: 0 auto;
+}
