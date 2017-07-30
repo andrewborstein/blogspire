@@ -41,3 +41,5 @@ test/reports
 cookbooks
 .wakatime-project
 .tags
+
+*.sqlite3
