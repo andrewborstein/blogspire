@@ -16,8 +16,20 @@
         = @blog.user.name if @blog.user.name.present?
       em.time-ago.grey-text.text-lighten-1= "#{time_ago_in_words(@blog.created_at)} ago"
       .section-spacer
-      = link_to '#', class: 'like js-like', data: { blog_id: @blog.id, user_id: current_user.id } do
-        i.material-icons favorite
+      .grey-text.like-count= @blog.likes.count
+      - if user_signed_in?
+        - likes = @blog.likes.for_user(current_user.id)
+        - if likes.present?
+          = link_to like_path(like: { id: likes.first.id }),
+            method: :delete, remote: true, class: 'red-text' do
+            i.material-icons favorite
+        - else
+          = link_to likes_path(like: {user_id: current_user.id, likable_id: @blog.id, likable_type: 'Blog'}),
+            method: :post, remote: true, class: 'grey-text' do
+            i.material-icons favorite
+      - else
+        i.material-icons.grey-text favorite
+
 
   .card-content
     .body-text= simple_format @blog.body, class: 'flow-text'

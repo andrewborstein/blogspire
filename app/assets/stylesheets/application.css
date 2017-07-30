@@ -120,3 +120,6 @@ nav ul a,
   max-width: 550px;
   margin: 0 auto;
 }
+.like-count {
+  padding: 0 6px 3px;
+}

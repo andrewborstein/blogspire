@@ -5,22 +5,54 @@ nav.light-blue.darken-4
       a.hide-on-large-and-up.button-collapse data-activates="slide-out" href="#"
         i.material-icons menu
       ul#nav-mobile.right.hide-on-med-and-down
-        li= link_to new_blog_path, class: 'btn-floating btn waves-effect waves-light orange accent-2' do
-          i.material-icons add
-        li= link_to 'Blogs', root_path
+        li= link_to new_blog_path, class: 'btn waves-effect waves-light orange accent-2' do
+          i.material-icons.left create
+          span New Blog
         - if current_user
-          li= link_to 'Profile', edit_user_path(current_user)
-          li= link_to 'Logout', destroy_user_session_path, method: :delete
+          li
+            = link_to '#', data: { activates: 'account' } , class: 'dropdown-button' do
+              i.material-icons.left account_circle
+              span My Account
+            ul#account.dropdown-content
+              li= link_to user_blogs_path(current_user) do
+                i.material-icons.left library_books
+                span Posts
+              li= link_to root_path(like: true) do
+                i.material-icons.left favorite
+                span Favorites
+              li= link_to edit_user_path(current_user) do
+                i.material-icons.left person
+                span Profile
+              li= link_to destroy_user_session_path, method: :delete do
+                i.material-icons.left exit_to_app
+                span Log Out
         - else
-          li= link_to 'Login', new_user_session_path
+          li= link_to new_user_session_path do
+            i.material-icons.left lock
+            span Log In
+
 
 ul#slide-out.side-nav
   li= link_to 'BlogSpire', root_path, class: 'brand-logo'
   li
     .divider
-  li= link_to 'Blogs', root_path
+  li= link_to new_blog_path do
+    i.material-icons.left create
+    span New Blog
   - if current_user
-    li= link_to 'Profile', current_user
-    li= link_to 'Logout', destroy_user_session_path, method: :delete
+    li= link_to user_blogs_path(current_user) do
+      i.material-icons.left library_books
+      span Posts
+    li= link_to root_path(like: true) do
+      i.material-icons.left favorite
+      span Favorites
+    li= link_to edit_user_path(current_user) do
+      i.material-icons.left person
+      span Profile
+    li= link_to destroy_user_session_path, method: :delete do
+      i.material-icons.left exit_to_app
+      span Log Out
   - else
-    li= link_to 'Login', new_user_session_path
+    li= link_to new_user_session_path do
+      i.material-icons.left lock
+      span Log In
