@@ -81,6 +81,9 @@ nav ul a,
   text-transform: none;
   color: #333;
 }
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):last-child {
+  margin-right: 0;
+}
 .card .card-content p + p {
   margin-top: 1em
 }
