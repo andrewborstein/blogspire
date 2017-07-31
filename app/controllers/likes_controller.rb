@@ -1,5 +1,5 @@
 class LikesController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :guard_likes
 
   # POST /likes
   # POST /likes.json
@@ -34,6 +34,12 @@ class LikesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def like_params
-    params.require(:like).permit(:id, :likable_id, :likable_type, :user_id)
+    params.permit(:id, :likable_id, :likable_type, :user_id)
+  end
+
+  def guard_likes
+    unless user_signed_in?
+      redirect_to new_user_session_path, flash: { warning: 'Sign in to show your support!' }
+    end
   end
 end

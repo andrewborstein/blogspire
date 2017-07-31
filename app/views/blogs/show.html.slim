@@ -9,33 +9,28 @@
         class: 'btn-floating halfway-fab waves-effect waves-light red lighten-2 right' do
         i.material-icons delete
 
-  .card-meta
+  .card-content.card-meta
     - if @blog.user.image.present? || @blog.user.name.present?
       .chip
         = image_tag @blog.user.image.url if @blog.user.image.present?
         = @blog.user.name if @blog.user.name.present?
       em.time-ago.grey-text.text-lighten-1= "#{time_ago_in_words(@blog.created_at)} ago"
       .section-spacer
-      .grey-text.like-count= @blog.likes.count
-      - if user_signed_in?
-        - likes = @blog.likes.for_user(current_user.id)
-        - if likes.present?
-          = link_to like_path(like: { id: likes.first.id }),
-            method: :delete, remote: true, class: 'red-text' do
-            i.material-icons favorite
-        - else
-          = link_to likes_path(like: {user_id: current_user.id, likable_id: @blog.id, likable_type: 'Blog'}),
-            method: :post, remote: true, class: 'grey-text' do
-            i.material-icons favorite
+      .grey-text.tooltipped.like-count data-delay='50' data-position='left' data-tooltip=@blog.likes.map{|l| l.user.name }.join(', ')
+        = @blog.likes.count
+      - if @blog_current_user_like.present?
+        = link_to @blog_current_user_like, method: :delete, remote: true,
+          class: 'red-text tooltipped' do
+          i.material-icons favorite
       - else
-        i.material-icons.grey-text favorite
+        = link_to likes_path({ likable_id: @blog.id, likable_type: @blog.class.name }), method: :post, remote: true,
+          class: 'grey-text' do
+          i.material-icons favorite
 
 
   .card-content
     .body-text= simple_format @blog.body, class: 'flow-text'
 
-
-  .card-content
   - if @blog_comments.present?
     .grey.lighten-5
       ul.collection.with-header

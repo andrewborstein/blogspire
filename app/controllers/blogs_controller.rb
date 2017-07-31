@@ -18,6 +18,7 @@ class BlogsController < ApplicationController
     @blogger_logged_in = current_user == @blog.user
     @comment = Comment.new(blog_id: @blog.id)
     @blog_comments = @blog.comments.order(created_at: :asc)
+    @blog_current_user_like = @blog.likes.for_user(current_user).first
   end
 
   # GET /blogs/new

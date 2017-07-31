@@ -9,12 +9,23 @@
         p= truncate(blog.body, length: 350, separator: ' ', omission: '... ')
           - if blog.body.length > 350
             = link_to 'read more', blog
-      .card-action
+      .card-action.card-meta
         - if blog.user.image.present? || blog.user.name.present?
-          = link_to user_blogs_path(blog.user), class: 'chip' do
+          .chip
             = image_tag blog.user.image.url if blog.user.image.present?
             = blog.user.name if blog.user.name.present?
-        em.time-ago.grey-text.text-lighten-1= "#{time_ago_in_words(blog.created_at)} ago"
+          em.time-ago.grey-text.text-lighten-1= "#{time_ago_in_words(blog.created_at)} ago"
+          .section-spacer
+          .grey-text.tooltipped.like-count data-delay='50' data-position='left' data-tooltip=blog.likes.map{|l| l.user.name }.join(', ')
+            = blog.likes.count
+          - if @blog_current_user_like.present?
+            = link_to @blog_current_user_like, method: :delete, remote: true,
+              class: 'red-text tooltipped' do
+              i.material-icons favorite
+          - else
+            = link_to likes_path({ likable_id: blog.id, likable_type: blog.class.name }), method: :post, remote: true,
+              class: 'grey-text' do
+              i.material-icons favorite
 
 - else
-  h5.white-text No blogs yet, WOMP
+  h5.white-text No blogs, WOMP

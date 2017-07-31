@@ -57,3 +57,5 @@ db/seeds.rb
 *.cache
 
 *.sqlite3
+
+db/development.sqlite3

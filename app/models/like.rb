@@ -14,5 +14,5 @@ class Like < ActiveRecord::Base
   # Scopes
   scope :for_blog, ->{ where(likable_type: 'Blog') }
   scope :for_comment, ->{ where(likable_type: 'Comment') }
-  scope :for_user, ->(id){ where(user_id: id) }
+  scope :for_user, ->(user){ where(user: user) }
 end
