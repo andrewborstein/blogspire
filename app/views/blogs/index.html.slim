@@ -1,6 +1,6 @@
 - if @blogs.present?
   - @blogs.each do |blog|
-    .card.no-page-title
+    .card
       .card-image
         = image_tag blog.card_image_url
         = link_to blog.title, blog, class: 'card-title'
@@ -13,7 +13,7 @@
         - if blog.user.image.present? || blog.user.name.present?
           .chip
             = image_tag blog.user.image.url if blog.user.image.present?
-            = blog.user.name if blog.user.name.present?
+            span.hide-on-small-only= blog.user.name if blog.user.name.present?
           em.time-ago.grey-text.text-lighten-1= "#{time_ago_in_words(blog.created_at)} ago"
           .section-spacer
           .grey-text.tooltipped.like-count data-delay='50' data-position='left' data-tooltip=blog.likes.map{|l| l.user.name }.join(', ')

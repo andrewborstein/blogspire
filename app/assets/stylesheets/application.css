@@ -122,3 +122,6 @@ nav ul a,
 .like-count {
   padding: 0 6px 3px;
 }
+@media (max-width: 600px) {
+  .chip > img { margin: 0 -12px; }
+}

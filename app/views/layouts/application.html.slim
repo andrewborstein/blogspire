@@ -1,19 +1,19 @@
 doctype html
 html
   head
-  == render 'layouts/head'
+    == render 'layouts/head'
   body class="#{controller_name} #{action_name}"
 
-  == render 'layouts/header'
+    == render 'layouts/header'
 
-  .container
-    - flash.each do |name, msg|
-      div class="card-panel #{flash_class(name)}" role="alert"
-        strong= msg
+    .container
+      - flash.each do |name, msg|
+        div class="card-panel #{flash_class(name)}" role="alert"
+          strong= msg
 
-    == yield
+      == yield
 
-  / Compiled and minified JavaScript
-  script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"
-  javascript:
-     $(".button-collapse").sideNav();
+    / Compiled and minified JavaScript
+    script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"
+    javascript:
+       $(".button-collapse").sideNav();
