@@ -1,6 +1,7 @@
 namespace :db do
+  # bundle exec rake db:reset_default_data
   desc "Destroy all blogs that random visitors have added."
-  task :reset do
+  task :reset_default_data => [:environment]
     blogs = Blog.where.not(id: [1,2,3])
     count = blogs.length
 
